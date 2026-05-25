@@ -75,6 +75,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 import os
 import sys
+import pymysql
+
+pymysql.install_as_MySQLdb()
 
 if 'test' in sys.argv or os.environ.get('GITHUB_ACTIONS') == 'true':
     DATABASES = {
@@ -86,12 +89,12 @@ if 'test' in sys.argv or os.environ.get('GITHUB_ACTIONS') == 'true':
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.mysql',
             'NAME': 'cdiu8226_todoappbd',
             'USER': 'cdiu8226_todoapp',
             'PASSWORD': 'R@y@n2005',
             'HOST': 'localhost',
-            'PORT': '5432',
+            'PORT': '3306',
         }
     }
 
