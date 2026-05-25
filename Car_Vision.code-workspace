@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../Projects/Car_Vision"
+		},
+		{
+			"path": "../Projects/Car_Vision_Frontend"
+		},
+		{
+			"path": "../Projects/Ecommerce/camerstore"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../Documents/Projets/laravel_projects/learning_laravel_2"
+		}
+	]
+}
