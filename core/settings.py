@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--q027k2d&y((1v7kqpabvn#=svi5*s(ew2koyu-i^^qgm*d7ml
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['todoapp.cdwfs.net', 'www.todoapp.cdwfs.net', 'localhost', '127.0.0.1']
 
 
 # Application definition
