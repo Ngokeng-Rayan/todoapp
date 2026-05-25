@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # ---------------------------------------------------------
+  # ELASTIC STACK (ELK) - Collecte de Logs (Partie V.1)
+  # ---------------------------------------------------------
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    networks:
+      - monitoring_network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - monitoring_network
+
+  # Note: Dans un environnement réel, Filebeat serait installé sur o2switch
+  # ou configuré pour parser le fichier django.log localement.
+
+  # ---------------------------------------------------------
+  # PROMETHEUS & GRAFANA - Métriques de Performance (Partie V.2)
+  # ---------------------------------------------------------
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitoring_network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    networks:
+      - monitoring_network
+
+networks:
+  monitoring_network:
+    driver: bridge
