@@ -73,17 +73,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-import pymysql
-pymysql.install_as_MySQLdb()
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'cdiu8226_todoappbd',
         'USER': 'cdiu8226_todoapp',
         'PASSWORD': 'R@y@n2005',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '5432',
     }
 }
 
